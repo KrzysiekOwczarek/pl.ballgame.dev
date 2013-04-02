@@ -261,7 +261,9 @@ public class BobController {
 				
 				world.getLevel().deleteMashroom((int)world.getLevel().getMashroomArr().get(i).getPosition().y, (int)world.getLevel().getMashroomArr().get(i).getPosition().x);
 				world.getLevel().getMashroomArr().removeIndex(i);
-				
+				//world.disposeWorld();
+				//world.getLevel().loadDemoLevel();
+				//world.createDemoWorld();
 			}
 		}
 	}

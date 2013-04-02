@@ -18,10 +18,15 @@ public class Level {
 	private Mashroom[][] mashrooms;
 	private Reader reader;
 	private Vector2 bobPosition;
-	private Array<Perk> perkList = new Array<Perk>();
-	private Array<Mashroom> mashroomList = new Array<Mashroom>();
-	private Array<Block> woodList = new Array<Block>();
+	private Array<Perk> perkList;
+	private Array<Mashroom> mashroomList;
+	private Array<Block> woodList;
+	private Vector2 endCoordinates;
+	private Vector2 startCoordinates;
 	
+	public Vector2 getStartCoordinates(){
+		return this.startCoordinates;
+	}
 	public int getWidth() {
 		return width;
 	}
@@ -120,8 +125,9 @@ public class Level {
 		this.blocks = blocks;
 	}
 
-	public Level() {
-		loadDemoLevel();
+	public Level(String path) {
+		loadDemoLevel(path);
+		System.out.println(this.getStartCoordinates());
 	}
 	
 	public Block get(int x, int y) {
@@ -132,8 +138,17 @@ public class Level {
 		return this.bobPosition;
 	}
 	
-	private void loadDemoLevel() {
-		reader = new Reader();
+	public Vector2 getEndCoordinates(){
+		return this.endCoordinates;
+	}
+	
+	public void loadDemoLevel(String path) {
+		
+		perkList = new Array<Perk>();
+		mashroomList = new Array<Mashroom>();
+		woodList = new Array<Block>();
+		
+		reader = new Reader(path);
 		
 		String[] lines = reader.getLines();
 		
@@ -151,6 +166,8 @@ public class Level {
 		blocks = new Block[width][height];
 		perks = new Perk[width][height];
 		mashrooms = new Mashroom[width][height];
+		startCoordinates = null;
+		endCoordinates = null;
 		
 		for (int col = 0; col < width; col++) {
 			for (int row = 0; row < height; row++) {
@@ -166,8 +183,14 @@ public class Level {
 					perks[col][row] = new Perk(new Vector2(col, row));
 				if(lines[row].charAt(col) == '%')
 					mashrooms[col][row] = new Mashroom(new Vector2(col, row));
-				if(lines[row].charAt(col) == '^')
+				if(lines[row].charAt(col) == '^'){
 					this.bobPosition = new Vector2(col, row);
+					this.startCoordinates = new Vector2(col, row);
+				}
+				if(lines[row].charAt(col) == '#'){
+					this.endCoordinates = new Vector2(col, row);
+					blocks[col][row] = new Block(new Vector2(col, row), 2);
+				}
 			}
 		}
 		

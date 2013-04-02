@@ -6,8 +6,9 @@ public class Reader {
 
 	private String[] aryLines;
 	
-	public Reader() {
-		String fileName = "./level0.txt";
+	public Reader(String path) {
+		
+		String fileName = path;
 		   
 		try{
 			ReadFile file = new ReadFile(fileName);

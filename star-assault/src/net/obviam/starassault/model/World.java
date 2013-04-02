@@ -132,7 +132,7 @@ public class World {
 	}
 
 	public void createDemoWorld() {
-		level = new Level();
+		level = new Level("level1.txt");
 		bob = new Bob(level.getBobPosition());
 		result = new Result();
 	}

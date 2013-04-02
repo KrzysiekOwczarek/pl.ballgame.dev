@@ -46,6 +46,7 @@ public class WorldRenderer {
 	private Texture perkTexture;
 	private Texture mashroomTexture;
 	private Texture woodTexture;
+	private Texture pipeTexture;
 	/** Animations **/
 	private Animation walkLeftAnimation;
 	private Animation walkRightAnimation;
@@ -111,6 +112,7 @@ public class WorldRenderer {
 		perkTexture = new Texture(Gdx.files.internal("images/star.png"));
 		mashroomTexture = new Texture(Gdx.files.internal("images/mashroom.png"));
 		woodTexture = new Texture(Gdx.files.internal("images/wood.png"));
+		pipeTexture = new Texture(Gdx.files.internal("images/pipe.png"));
 	}
 	
 	
@@ -126,10 +128,19 @@ public class WorldRenderer {
 
 	private void drawBlocks() {
 		for (Block block : world.getDrawableBlocks((int)CAMERA_WIDTH, (int)CAMERA_HEIGHT)) {
-			if(block.SUPER == 0)
-				spriteBatch.draw(tileTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
-			else
-				spriteBatch.draw(woodTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+			switch(block.SUPER){
+				case 0:
+					spriteBatch.draw(tileTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+				break;
+				
+				case 1:
+					spriteBatch.draw(woodTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+				break;
+				
+				case 2:
+					spriteBatch.draw(pipeTexture, block.getPosition().x * ppuX, block.getPosition().y * ppuY, Block.SIZE * ppuX, Block.SIZE * ppuY);
+				break;
+			}
 		}
 	}
 	
