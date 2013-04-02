@@ -12,6 +12,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Animation;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
@@ -32,6 +33,7 @@ public class WorldRenderer {
 	ShapeRenderer debugRenderer = new ShapeRenderer();
 
 	/** Textures **/
+	private BitmapFont font;
 	private TextureRegion bobIdleLeft;
 	private TextureRegion bobIdleRight;
 	//private TextureRegion blockTexture;
@@ -74,6 +76,7 @@ public class WorldRenderer {
 		this.cam.position.set(CAMERA_WIDTH / 2f, CAMERA_HEIGHT / 2f, 0);
 		this.cam.update();
 		this.debug = debug;
+		this.font = new BitmapFont();
 		spriteBatch = new SpriteBatch();
 		loadTextures();
 	}

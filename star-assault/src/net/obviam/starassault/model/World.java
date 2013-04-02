@@ -2,7 +2,8 @@ package net.obviam.starassault.model;
 
 import java.util.ArrayList;
 import java.util.List;
-import net.obviam.starassault.model.Points;
+import net.obviam.starassault.model.Result;
+
 import com.badlogic.gdx.math.Rectangle;
 import com.badlogic.gdx.utils.Array;
 
@@ -12,7 +13,7 @@ public class World {
 	Bob bob;
 	/** A world has a level through which Bob needs to go through **/
 	Level level;
-	Points points;
+	Result result;
 	/** The collision boxes **/
 	Array<Rectangle> collisionRects = new Array<Rectangle>();
 
@@ -28,8 +29,8 @@ public class World {
 	public Level getLevel() {
 		return level;
 	}
-	public Points getPoints(){
-		return points;
+	public Result getResult(){
+		return result;
 	}
 	/** Return only the blocks that need to be drawn **/
 	public List<Block> getDrawableBlocks(int width, int height) {
@@ -133,6 +134,6 @@ public class World {
 	public void createDemoWorld() {
 		level = new Level();
 		bob = new Bob(level.getBobPosition());
-		points = new Points();
+		result = new Result();
 	}
 }

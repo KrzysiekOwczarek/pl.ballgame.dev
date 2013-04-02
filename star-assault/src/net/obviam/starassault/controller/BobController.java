@@ -242,7 +242,8 @@ public class BobController {
 			if(world.getLevel().getPerkArr().get(i).getPosition().x == Math.floor(bob.getPosition().x) &&
 					world.getLevel().getPerkArr().get(i).getPosition().y == Math.floor(bob.getPosition().y)){
 				
-				world.getPoints().addPoints(world.getLevel().getPerkArr().get(i).useFeature());
+				world.getResult().addPoints(world.getLevel().getPerkArr().get(i).useFeature());
+				world.getResult().writePoints();
 				
 				world.getLevel().deletePerk((int)world.getLevel().getPerkArr().get(i).getPosition().y, (int)world.getLevel().getPerkArr().get(i).getPosition().x);
 				world.getLevel().getPerkArr().removeIndex(i);

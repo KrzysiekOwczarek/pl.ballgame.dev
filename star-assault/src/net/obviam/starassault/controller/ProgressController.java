@@ -1,32 +1,25 @@
 package net.obviam.starassault.controller;
 
+import net.obviam.starassault.model.Result;
+import net.obviam.starassault.model.UI;
 import net.obviam.starassault.model.World;
 
 public class ProgressController {
 	
-	private int counterValue;
 	private World world;
+	private UI ui;
+	private Result result;
 	
-	public ProgressController(World world){
+	public ProgressController(World world, UI ui){
 		this.world = world;
-	}
-	
-	public void addPoints(int add){
-		this.setPoints(this.getCounterValue() + add);
-	}
-
-	public int getCounterValue() {
-		return this.counterValue;
-	}
-
-	public void setPoints(int points) {
-		this.counterValue = points;
+		this.result = this.world.getResult();
+		this.ui = ui;
 	}
 	
 	public void update(float delta) {
-		if(this.world.getPoints().getPointsValue() > this.counterValue){
-			this.setPoints(this.world.getPoints().getPointsValue());
-			System.out.println(this.getCounterValue());
+		if(result.getResult() > ui.getPointsDisplay().getPointsInt()){
+			this.ui.getPointsDisplay().setText(Integer.toString(this.result.getResult()));
+			System.out.println(result.getResult());
 		}
 	}
 }

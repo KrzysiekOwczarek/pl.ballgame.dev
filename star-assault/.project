@@ -18,7 +18,12 @@
 		<link>
 			<name>assets</name>
 			<type>2</type>
-			<location>/Users/krzysztofowczarek/Downloads/myGame/star-assault-android/assets</location>
+			<location>/Users/krzysztofowczarek/git/pl.ballgame.dev/star-assault-android/assets</location>
+		</link>
+		<link>
+			<name>images</name>
+			<type>2</type>
+			<location>/Users/krzysztofowczarek/git/pl.ballgame.dev/star-assault-android/assets/images</location>
 		</link>
 	</linkedResources>
 </projectDescription>

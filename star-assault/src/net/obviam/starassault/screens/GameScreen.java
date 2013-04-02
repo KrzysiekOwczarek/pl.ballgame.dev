@@ -2,7 +2,9 @@ package net.obviam.starassault.screens;
 
 import net.obviam.starassault.controller.BobController;
 import net.obviam.starassault.controller.ProgressController;
+import net.obviam.starassault.model.UI;
 import net.obviam.starassault.model.World;
+import net.obviam.starassault.view.UIRenderer;
 import net.obviam.starassault.view.WorldRenderer;
 
 import com.badlogic.gdx.Application.ApplicationType;
@@ -15,7 +17,9 @@ import com.badlogic.gdx.graphics.GL10;
 public class GameScreen implements Screen, InputProcessor {
 
 	private World 			world;
+	private UI				ui;
 	private WorldRenderer 	renderer;
+	private UIRenderer 		uirenderer;
 	private BobController	controller;
 	private ProgressController progressController;
 	
@@ -23,10 +27,12 @@ public class GameScreen implements Screen, InputProcessor {
 	
 	@Override
 	public void show() {
+		ui = new UI();
 		world = new World();
 		renderer = new WorldRenderer(world, false);
+		uirenderer = new UIRenderer(ui);
 		controller = new BobController(world);
-		progressController = new ProgressController(world);
+		progressController = new ProgressController(world, ui);
 		Gdx.input.setInputProcessor(this);
 	}
 
@@ -38,6 +44,7 @@ public class GameScreen implements Screen, InputProcessor {
 		controller.update(delta);
 		progressController.update(delta);
 		renderer.render();
+		uirenderer.render();
 	}
 	
 	@Override
