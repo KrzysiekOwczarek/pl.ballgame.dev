@@ -5,6 +5,7 @@ import com.badlogic.gdx.math.Vector2;
 import net.obviam.starassault.model.Bob;
 import net.obviam.starassault.model.Level;
 import net.obviam.starassault.model.World;
+import net.obviam.starassault.model.Bob.State;
 
 public class LevelController {
 	
@@ -29,7 +30,8 @@ public class LevelController {
 	}
 	
 	public void update(float delta){
-		if(Math.floor(bob.getPosition().x) == endCoordinates.x && Math.floor(bob.getPosition().y) == endCoordinates.y+1){
+		if(Math.floor(bob.getPosition().x) == endCoordinates.x && Math.floor(bob.getPosition().y) == endCoordinates.y+1
+				&& bob.getState().equals(State.IDLE)){
 			level.loadDemoLevel(nextLevel);
 			updateParams();
 			bob.setPosition(this.startCoordinates);
